@@ -1,0 +1,7 @@
+tutores_admin_import:
+    resource: "@TutoresBundle/Resources/config/routing/import.yml"
+    prefix:   /admin/import
+
+tutores_homepage:
+    path:     /
+    defaults: { _controller: TutoresBundle:Default:index }

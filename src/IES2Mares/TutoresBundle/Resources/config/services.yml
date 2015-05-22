@@ -1,0 +1,4 @@
+services:
+#    tutores.example:
+#        class: IES2Mares\TutoresBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

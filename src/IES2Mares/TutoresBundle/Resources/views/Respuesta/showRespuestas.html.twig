@@ -1,0 +1,61 @@
+                    <table class="table table-bordered table-striped">
+                        {#
+                            {% block table_header %}
+                                <thead>
+                                    <tr class="sonata-ba-list-field-header">
+                                        {% for field_description in admin.list.elements %}
+                                                {% spaceless %}
+                                                    <th class="sonata-ba-list-field-header-{{ field_description.type}}
+                                                        {{ admin.trans(field_description.label, {}, field_description.translationDomain) }}
+                                                    </th>
+                                                {% endspaceless %}
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                            {% endblock %}
+                        #}
+                        {% block table_body %}
+                            <tbody>
+                                {% for profesor in profesores %}
+                                    <tr>
+                                        <th>{{ profesor }}</th>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                    {% for respuesta in respuestas[profesor.getId] %}
+                                                <tr>
+                                                    <th>{{ respuesta.getPreguntaincorporada.getPregunta }}</th>
+                                                    <td>
+                                                        {{  respuesta.getValorString }}
+                                                    </td>
+                                                </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            {% if observacion[profesor.getId] %}
+                                                {{ observacion[profesor.getId].getObservacion }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        {% endblock %}
+{#
+                        {% block table_footer %}
+                            <tfoot>
+
+                                {% block pager_links %}
+                                    {% if admin.datagrid.pager.haveToPaginate() %}
+                                        {% include admin.getTemplate('pager_links') %}
+                                    {% endif %}
+                                {% endblock %}
+
+                            </tfoot>
+                        {% endblock %}
+#}
+                    </table>
+
+            {% block list_footer %}{% endblock %}
+

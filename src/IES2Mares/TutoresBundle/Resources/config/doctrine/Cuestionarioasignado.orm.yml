@@ -1,0 +1,43 @@
+IES2Mares\TutoresBundle\Entity\Cuestionarioasignado:
+    type: entity
+    table: cuestionarioAsignado
+    indexes:
+        fk_cuestionario_has_profesor_cuestionario1:
+            columns:
+                - cuestionario
+        fk_cuestionario_has_profesor_profesor1:
+            columns:
+                - profesor
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        completado:
+            type: boolean
+            nullable: true
+            unsigned: false
+    manyToOne:
+        cuestionario:
+            targetEntity: Cuestionario
+            cascade: {  }
+            mappedBy: cuestionariosasignados
+            inversedBy: null
+            joinColumns:
+                cuestionario:
+                    referencedColumnName: id
+            orphanRemoval: false
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: cuestionariosasignados
+            inversedBy: null
+            joinColumns:
+                profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

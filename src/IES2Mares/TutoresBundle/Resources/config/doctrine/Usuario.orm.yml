@@ -1,0 +1,56 @@
+IES2Mares\TutoresBundle\Entity\Usuario:
+    type: entity
+    table: usuario
+    repositoryClass: IES2Mares\TutoresBundle\Entity\UsuarioRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        tipousuario:
+            type: string
+            nullable: true
+            length: 1
+            fixed: true
+            column: tipoUsuario
+        apellidos:
+            type: string
+            nullable: false
+            length: 50
+            column: apellidos
+        nombre:
+            type: string
+            nullable: false
+            length: 30
+            column: nombre
+        google_id:
+            type: string
+            nullable: true
+            length: 255
+            column: google_id
+        google_access_token:
+            type: string
+            nullable: true
+            length: 255
+            column: google_access_token
+    oneToOne:
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: idusuario
+            inversedBy: null
+            joinColumns: null
+            orphanRemoval: false
+    oneToOne:
+        alumno:
+            targetEntity: Alumno
+            cascade: {  }
+            mappedBy: idusuario
+            inversedBy: null
+            joinColumns: null
+            orphanRemoval: false
+    lifecycleCallbacks: {}

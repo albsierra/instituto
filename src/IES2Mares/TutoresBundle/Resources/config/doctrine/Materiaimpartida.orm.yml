@@ -1,0 +1,56 @@
+IES2Mares\TutoresBundle\Entity\Materiaimpartida:
+    type: entity
+    table: materiaImpartida
+    indexes:
+        fk_MateriasImpartidas_Materias1_idx:
+            columns:
+                - materia
+        fk_MateriasImpartidas_Profesores1_idx:
+            columns:
+                - profesor
+        fk_materiaImpartida_grupo1_idx:
+            columns:
+                - grupo
+    uniqueConstraints:
+        index5:
+            columns:
+                - materia
+                - profesor
+                - grupo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        materia:
+            targetEntity: Materia
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                materia:
+                    referencedColumnName: codigo
+            orphanRemoval: false
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+        grupo:
+            targetEntity: Grupo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                grupo:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

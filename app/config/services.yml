@@ -1,0 +1,34 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+imports:
+    - { resource: @TutoresBundle/Resources/config/admin.yml }
+
+
+parameters:
+#    parameter_name: value
+    my_user_provider.class: IES2Mares\TutoresBundle\Security\Core\User\FOSUBUserProvider
+    my_.user_admin_user.class: IES2Mares\TutoresBundle\Admin\UsuarioAdmin
+    sonata.user.admin.user.entity: IES2Mares\TutoresBundle\Entity\Usuario
+    sonata.user.admin.user.class: IES2Mares\TutoresBundle\Admin\UsuarioAdmin
+
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    # hwi_oauth.user.provider.fosub_bridge:
+        # class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
+    my_user_provider:
+        class: "%my_user_provider.class%"
+        arguments: ["@fos_user.user_manager", {google: google_id}]
+
+    my.listener:
+        class: IES2Mares\TutoresBundle\Listener\EventListener
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: prePersist }
+        arguments: [ @service_container ]
+
+    sonata.user.admin.group:
+        abstract: true
+        public: false

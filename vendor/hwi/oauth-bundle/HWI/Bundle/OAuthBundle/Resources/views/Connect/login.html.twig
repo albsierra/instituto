@@ -1,0 +1,10 @@
+{% extends 'TutoresBundle::layout.html.twig' %}
+
+{% block content %}
+    {% if error %}
+        <span>{{ error }}</span>
+    {% endif %}
+    {% for owner in hwi_oauth_resource_owners() %}
+        Conectar con <a href="{{ hwi_oauth_login_url(owner) }}">{{ owner | trans({}, 'HWIOAuthBundle') }}</a> <br />
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,48 @@
+IES2Mares\TutoresBundle\Entity\Observacion:
+    type: entity
+    table: observacion
+    indexes:
+        IDX_8B8B4C65B7406D9:
+            columns:
+                - profesor
+        IDX_8B8B4C61C5D482:
+            columns:
+                - cuestionario
+    uniqueConstraints:
+        index4:
+            columns:
+                - profesor
+                - cuestionario
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        observacion:
+            type: text
+            nullable: false
+            fixed: false
+    manyToOne:
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+        cuestionario:
+            targetEntity: Cuestionario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                cuestionario:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,20 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: db_name
+    database_user: dbuser
+    database_password: dbpassword
+
+    mailer_transport: smtp
+    mailer_host: mailer.host
+    mailer_user: user@mailer.com
+    mailer_password: mailpassword
+    mailer_encryption: tls
+    mailer_auth_mode: cram-md5
+    locale: es
+    secret: yoursecret
+
+    dominio: murciaeduca.es
+    superadmin: username@murciaeduca.es

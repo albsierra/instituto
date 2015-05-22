@@ -1,0 +1,84 @@
+IES2Mares\TutoresBundle\Entity\Profesor:
+    type: entity
+    table: profesor
+    repositoryClass: IES2Mares\TutoresBundle\Entity\ProfesorRepository
+    indexes:
+        fk_profesor_usuario1_idx:
+            columns:
+                - idUsuario
+    id:
+        id:
+            type: string
+            nullable: false
+            length: 6
+            fixed: true
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        apellidos:
+            type: string
+            nullable: false
+            length: 19
+            fixed: false
+        nombre:
+            type: string
+            nullable: false
+            length: 19
+            fixed: false
+        dni:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+        movil:
+            type: string
+            nullable: true
+            length: 9
+            fixed: false
+        departamento:
+            type: string
+            nullable: true
+            length: 4
+            fixed: false
+        email:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+    oneToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: profesor
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        tutoria:
+            targetEntity: Grupo
+            mappedBy: profesortutor
+        cuestionariosasignados:
+            targetEntity: Cuestionarioasignado
+            mappedBy: profesor
+    manyToMany:
+        alumnos:
+            targetEntity: Alumno
+            inversedBy: profesores
+            joinTable:
+                name: materiaMatriculada
+                joinColumns:
+                    profesor:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    expediente:
+                      referencedColumnName: id
+
+        cuestionarios:
+            targetEntity: Cuestionario
+            mappedBy: profesores
+
+
+    lifecycleCallbacks: { }

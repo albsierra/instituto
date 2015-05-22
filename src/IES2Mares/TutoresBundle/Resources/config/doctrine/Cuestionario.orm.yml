@@ -1,0 +1,77 @@
+IES2Mares\TutoresBundle\Entity\Cuestionario:
+    type: entity
+    table: cuestionario
+    indexes:
+        fk_cuestionario_profesor1_idx:
+            columns:
+                - creador
+        fk_cuestionario_alumno1_idx:
+            columns:
+                - alumno
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        createdat:
+            type: datetime
+            nullable: false
+            default: CURRENT_TIMESTAMP
+            column: createdAt
+        observaciones:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        fechafin:
+            type: date
+            nullable: true
+            column: fechaFin
+    manyToOne:
+        creador:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                creador:
+                    referencedColumnName: id
+            orphanRemoval: false
+        alumno:
+            targetEntity: Alumno
+            cascade: {  }
+            mappedBy: null
+            inversedBy: cuestionarios
+            joinColumns:
+                alumno:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        preguntas:
+            targetEntity: Pregunta
+            mappedBy: cuestionarios
+
+        profesores:
+            targetEntity: Profesor
+            inversedBy: cuestionarios
+            joinTable:
+                name: cuestionarioAsignado
+                joinColumns:
+                    cuestionario:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    profesor:
+                      referencedColumnName: id
+    oneToMany:
+      preguntasincorporadas:
+        targetEntity: Preguntaincorporada
+        mappedBy: cuestionario
+      cuestionariosasignados:
+        targetEntity: Cuestionarioasignado
+        mappedBy: cuestionario
+
+    lifecycleCallbacks: {  }

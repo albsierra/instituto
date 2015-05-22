@@ -1,0 +1,46 @@
+IES2Mares\TutoresBundle\Entity\Respuesta:
+    type: entity
+    table: respuesta
+    repositoryClass: IES2Mares\TutoresBundle\Entity\RespuestaRepository
+    indexes:
+        fk_respuesta_preguntaIncorporada1_idx:
+            columns:
+                - preguntaIncorporada
+    uniqueConstraints:
+        index4:
+            columns:
+                - profesor
+                - preguntaIncorporada
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        valor:
+            type: integer
+            nullable: false
+            unsigned: false
+    manyToOne:
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+        preguntaincorporada:
+            targetEntity: Preguntaincorporada
+            cascade: {  }
+            mappedBy: respuestas
+            inversedBy: null
+            joinColumns:
+                preguntaIncorporada:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

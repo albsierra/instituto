@@ -1,0 +1,30 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends 'SonataAdminBundle:CRUD:base_show.html.twig' %}
+
+
+                        {% block show_field %}
+                            <tr class="sonata-ba-view-container">
+                                {% if elements[field_name] is defined %}
+                                    {% if elements[field_name] is defined and field_name == 'cuestionariosasignados' %}
+                                        <th>Evaluaciones</th>
+                                        <td>    {{ render(controller(
+                                                    'TutoresBundle:Respuesta:respuestasCuestionario',
+                                                    { 'id': object.getId, '_sonata_admin' : 'sonata.admin.respuesta' }
+                                                )) }}
+                                    </td>
+                                    {% else %}
+                                        {{ elements[field_name]|render_view_element(object) }}
+                                    {% endif %}
+                                {% endif %}
+                            </tr>
+                        {% endblock %}

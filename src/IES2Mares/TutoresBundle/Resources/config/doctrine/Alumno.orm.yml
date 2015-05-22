@@ -1,0 +1,149 @@
+IES2Mares\TutoresBundle\Entity\Alumno:
+    type: entity
+    table: alumno
+    repositoryClass: IES2Mares\TutoresBundle\Entity\AlumnoRepository
+    indexes:
+        NOMBRE:
+            columns:
+                - apellido1
+                - apellido2
+                - nombre
+        fk_alumno_usuario1_idx:
+            columns:
+                - idUsuario
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        dni:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+        apellido1:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        apellido2:
+            type: string
+            nullable: true
+            length: 30
+            fixed: false
+        nombre:
+            type: string
+            nullable: false
+            length: 30
+            fixed: false
+        fechanac:
+            type: date
+            nullable: true
+            column: fechaNac
+        movil:
+            type: string
+            nullable: true
+            length: 9
+            fixed: false
+        padre:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+        madre:
+            type: string
+            nullable: true
+            length: 48
+            fixed: false
+        telcasa:
+            type: string
+            nullable: true
+            length: 9
+            fixed: false
+            column: telCasa
+        movilpadre:
+            type: string
+            nullable: true
+            length: 9
+            fixed: false
+            column: movilPadre
+        movilmadre:
+            type: string
+            nullable: true
+            length: 9
+            fixed: false
+            column: movilMadre
+        domicilio:
+            type: string
+            nullable: true
+            length: 67
+            fixed: false
+        cp:
+            type: string
+            nullable: true
+            length: 5
+            fixed: false
+        localidad:
+            type: string
+            nullable: true
+            length: 21
+            fixed: false
+        provincia:
+            type: string
+            nullable: true
+            length: 8
+            fixed: false
+    oneToOne:
+        idusuario:
+            targetEntity: Usuario
+            cascade: {  }
+            mappedBy: null
+            inversedBy: alumno
+            joinColumns:
+                idUsuario:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+        cuestionarios:
+            targetEntity: Cuestionario
+            mappedBy: alumno
+    manyToMany:
+        grupos:
+            targetEntity: Grupo
+            inversedBy: alumnos
+            joinTable:
+                name: matricula
+                joinColumns:
+                    expediente:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    grupo:
+                      referencedColumnName: id
+        materias:
+            targetEntity: Materia
+            inversedBy: alumnos
+            joinTable:
+                name: materiaMatriculada
+                joinColumns:
+                    expediente:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    materia:
+                      referencedColumnName: codigo
+        profesores:
+            targetEntity: Profesor
+            inversedBy: alumnos
+            joinTable:
+                name: materiaMatriculada
+                joinColumns:
+                    expediente:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    profesor:
+                      referencedColumnName: id
+
+    lifecycleCallbacks: {  }

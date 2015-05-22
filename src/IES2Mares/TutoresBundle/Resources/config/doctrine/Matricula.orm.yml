@@ -1,0 +1,41 @@
+IES2Mares\TutoresBundle\Entity\Matricula:
+    type: entity
+    table: matricula
+    repositoryClass: IES2Mares\TutoresBundle\Entity\MatriculaRepository
+    indexes:
+        fk_matricula_grupo1_idx:
+            columns:
+                - grupo
+    uniqueConstraints:
+        index4:
+            columns:
+                - expediente
+                - grupo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        expediente:
+            targetEntity: Alumno
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                expediente:
+                    referencedColumnName: id
+            orphanRemoval: false
+        grupo:
+            targetEntity: Grupo
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                grupo:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

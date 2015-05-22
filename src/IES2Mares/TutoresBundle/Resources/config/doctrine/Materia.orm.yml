@@ -1,0 +1,41 @@
+IES2Mares\TutoresBundle\Entity\Materia:
+    type: entity
+    table: materia
+    id:
+        codigo:
+            type: string
+            nullable: false
+            length: 6
+            fixed: false
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        materia:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        ensenanza:
+            type: string
+            nullable: true
+            length: 100
+            fixed: false
+        curso:
+            type: string
+            nullable: true
+            length: 1
+            fixed: false
+    manyToMany:
+        alumnos:
+            targetEntity: Alumno
+            inversedBy: materias
+            joinTable:
+                name: materiaMatriculada
+                joinColumns:
+                    materia:
+                      referencedColumnName: codigo
+                inverseJoinColumns:
+                    expediente:
+                      referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,58 @@
+IES2Mares\TutoresBundle\Entity\Pregunta:
+    type: entity
+    table: pregunta
+    indexes:
+        fk_preguntas_profesor1_idx:
+            columns:
+                - creador
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        enunciado:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+        tipo:
+            type: string
+            nullable: true
+            length: 7
+            fixed: true
+        obligatoria:
+            type: boolean
+            nullable: true
+            unsigned: false
+        incluidapordefecto:
+            type: boolean
+            nullable: true
+            unsigned: false
+            column: incluidaPorDefecto
+    manyToOne:
+        creador:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                creador:
+                    referencedColumnName: id
+            orphanRemoval: false
+    manyToMany:
+        cuestionarios:
+            targetEntity: Cuestionario
+            inversedBy: preguntas
+            joinTable:
+                name: preguntaIncorporada
+                joinColumns:
+                    pregunta:
+                      referencedColumnName: id
+                inverseJoinColumns:
+                    cuestionario:
+                      referencedColumnName: id
+    lifecycleCallbacks: {  }

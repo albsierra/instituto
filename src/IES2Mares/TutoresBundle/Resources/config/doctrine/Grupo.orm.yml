@@ -1,0 +1,65 @@
+IES2Mares\TutoresBundle\Entity\Grupo:
+    type: entity
+    table: grupo
+    repositoryClass: IES2Mares\TutoresBundle\Entity\GrupoRepository
+    indexes:
+        tutor:
+            columns:
+                - tutor
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        anyo:
+            type: string
+            nullable: false
+            length: 7
+            fixed: false
+        grupo:
+            type: string
+            nullable: false
+            length: 5
+            fixed: false
+        subgrupo:
+            type: string
+            nullable: false
+            length: 5
+            fixed: false
+        ensenanza:
+            type: string
+            nullable: true
+            length: 80
+            fixed: false
+        curso:
+            type: integer
+            nullable: true
+            unsigned: false
+        tutor:
+            type: string
+            nullable: true
+            length: 6
+            fixed: false
+        horariovisita:
+            type: string
+            nullable: true
+            length: 10
+            fixed: false
+            column: horarioVisita
+    manyToOne:
+        profesortutor:
+            targetEntity: Profesor
+            inversedBy: tutoria
+            joinColumn:
+                name: tutor
+                referencedColumnName: id
+    manyToMany:
+        alumnos:
+            targetEntity: Alumno
+            mappedBy: grupos
+
+    lifecycleCallbacks: {  }

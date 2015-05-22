@@ -1,0 +1,44 @@
+IES2Mares\TutoresBundle\Entity\Preguntaincorporada:
+    type: entity
+    table: preguntaIncorporada
+    repositoryClass: IES2Mares\TutoresBundle\Entity\PreguntaincorporadaRepository
+    indexes:
+        fk_cuestionario_has_preguntas_preguntas1_idx:
+            columns:
+                - pregunta
+        fk_cuestionario_has_preguntas_cuestionario1_idx:
+            columns:
+                - cuestionario
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        cuestionario:
+            targetEntity: Cuestionario
+            cascade: {  }
+            mappedBy: preguntasincorporadas
+            inversedBy: null
+            joinColumns:
+                cuestionario:
+                    referencedColumnName: id
+            orphanRemoval: false
+        pregunta:
+            targetEntity: Pregunta
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pregunta:
+                    referencedColumnName: id
+            orphanRemoval: false
+    oneToMany:
+      respuestas:
+        targetEntity: IES2Mares\TutoresBundle\Entity\Respuesta
+        mappedBy: preguntaincorporada
+
+    lifecycleCallbacks: {  }

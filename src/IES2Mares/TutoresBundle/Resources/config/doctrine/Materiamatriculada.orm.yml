@@ -1,0 +1,63 @@
+IES2Mares\TutoresBundle\Entity\Materiamatriculada:
+    type: entity
+    table: materiaMatriculada
+    repositoryClass: IES2Mares\TutoresBundle\Entity\MateriaimpartidaRepository
+    indexes:
+        fk_MateriasMatriculadas_Materias1_idx:
+            columns:
+                - materia
+        fk_MateriasMatriculadas_Profesores1_idx:
+            columns:
+                - profesor
+        IDX_E38E55AD59CA413:
+            columns:
+                - expediente
+    uniqueConstraints:
+        index4:
+            columns:
+                - expediente
+                - materia
+                - anyo
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        anyo:
+            type: string
+            nullable: false
+            length: 7
+            fixed: false
+    manyToOne:
+        expediente:
+            targetEntity: Alumno
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                expediente:
+                    referencedColumnName: id
+            orphanRemoval: false
+        materia:
+            targetEntity: Materia
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                materia:
+                    referencedColumnName: codigo
+            orphanRemoval: false
+        profesor:
+            targetEntity: Profesor
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                profesor:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,156 @@
+services:
+    sonata.admin.usuario:
+        class: IES2Mares\TutoresBundle\Admin\UsuarioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Usuarios" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Usuario
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.profesor:
+        class: IES2Mares\TutoresBundle\Admin\ProfesorAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Profesores" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Profesor
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.alumno:
+        class: IES2Mares\TutoresBundle\Admin\AlumnoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Alumnos" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Alumno
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.grupo:
+        class: IES2Mares\TutoresBundle\Admin\GrupoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Grupos" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Grupo
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.matricula:
+        class: IES2Mares\TutoresBundle\Admin\MatriculaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Matriculas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Matricula
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.materia:
+        class: IES2Mares\TutoresBundle\Admin\MateriaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Materias" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Materia
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.materiaimpartida:
+        class: IES2Mares\TutoresBundle\Admin\MateriaimpartidaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Materias Impartidas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Materiaimpartida
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.materiamatriculada:
+        class: IES2Mares\TutoresBundle\Admin\MateriamatriculadaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Materias Matriculadas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Materiamatriculada
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.cuestionario:
+        class: IES2Mares\TutoresBundle\Admin\CuestionarioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Cuestionarios de mi tutoría" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Cuestionario
+            - TutoresBundle:Cuestionario
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+            - [ setTemplate, [show, TutoresBundle:Cuestionario:show.html.twig]]
+    sonata.admin.cuestionarioasignado:
+        class: IES2Mares\TutoresBundle\Admin\CuestionarioasignadoAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Cuestionarios Pendientes de Respuesta" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Cuestionarioasignado
+            - TutoresBundle:Cuestionarioasignado
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.pregunta:
+        class: IES2Mares\TutoresBundle\Admin\PreguntaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Preguntas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Pregunta
+            - TutoresBundle:Pregunta
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.preguntaincorporada:
+        class: IES2Mares\TutoresBundle\Admin\PreguntaincorporadaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Preguntas Incorporadas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Preguntaincorporada
+            - ~
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.respuesta:
+        class: IES2Mares\TutoresBundle\Admin\RespuestaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Respuestas" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Respuesta
+            - TutoresBundle:Respuesta
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+    sonata.admin.observacion:
+        class: IES2Mares\TutoresBundle\Admin\ObservacionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Observaciones" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Observacion
+            - TutoresBundle:Observacion
+        calls:
+            - [ setTranslationDomain, [TutoresBundle]]
+
+
+    sonata.admin.tutores:
+        class: IES2Mares\TutoresBundle\Admin\TutoresAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "Alumnos de mi tutoría" }
+        arguments:
+            - ~
+            - IES2Mares\TutoresBundle\Entity\Alumno
+            - TutoresBundle:Tutores # define the new controller via the third argument
+#            - %my_user_provider.class% #forth argument
+        calls:
+            - [ setTranslationDomain, [IES2Mares\TutoresBundle]]
+#            - [setUserManager, [@fos_user.user_manager]]

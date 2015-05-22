@@ -1,0 +1,24 @@
+{% extends 'TutoresBundle::layout.html.twig' %}
+
+{% block title %}Tutores{% endblock %}
+
+    {% block content_header %}
+        <ul id="menu">
+            {% block content_header_more %}
+                <li><a href="/">Home</a></li>
+                <li><a href="/admin">Acceder</a></li>
+            {% endblock %}
+        </ul>
+
+        <div style="clear: both"></div>
+    {% endblock %}
+
+{% block content %}
+    {% set version = constant('Symfony\\Component\\HttpKernel\\Kernel::MAJOR_VERSION') ~ '.' ~ constant('Symfony\\Component\\HttpKernel\\Kernel::MINOR_VERSION')%}
+
+    <h1 class="title">¡Bienvenido!</h1>
+
+    <p>Tutores App</p>
+
+{% endblock %}
+
